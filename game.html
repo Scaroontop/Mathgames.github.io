@@ -208,12 +208,7 @@
 
         // Setup button handler
         document.getElementById('chooseButton').addEventListener('click', () => {
-            const token = document.getElementById('accessToken').value;
-            if (checkAccess(token)) {
-                window.location.href = 'https://scaroontop.github.io/Proxify/choose.html';
-            } else {
-                alert('Access denied!');
-            }
+            window.location.href = 'https://scaroontop.github.io/Proxify/choose.html';
         });
 
         // Toggle functionality
