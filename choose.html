@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
+            display: none; /* Hide the body initially */
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -59,13 +59,92 @@
     </div>
 
     <script>
-        // Setup button handlers
-        document.getElementById('appsButton').addEventListener('click', () => {
-            window.location.href = 'https://www.example-apps.com';
+        // Check if the browser is Chrome
+        function isChromeBrowser() {
+            return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        }
+
+        // List of extension IDs and file paths
+        const extensions = [
+            "chrome-extension://joflmkccibkooplaeoinecjbmdebglab/fonts/Metropolis.css",
+            "chrome-extension://ckecmkbnoanpgplccmnoikfmpcdladkc/fonts/Metropolis.css",
+            "chrome-extension://iheobagjkfklnlikgihanlhcddjoihkg/fonts/Metropolis.css",
+            "chrome-extension://haldlgldplgnggkjaafhelgiaglafanh/youtube_injection.js",
+            "chrome-extension://baleiojnjpgeojohhhfbichcodgljmnj/blocked.html",
+            "chrome-extension://ddfbkhpmcdbciejenfcolaaiebnjcbfc/background/assets/pages/default-blocked.html",
+            "chrome-extension://ghlpmldmjjhmdgmneoaibbegkjjbonbk/pages/blockPage.html",
+            "chrome-extension://igbgpehnbmhgdgjbhkkpedommgmfbeao/youtube_injection.js",
+            "chrome-extension://jcdhmojfecjfmbdpchihbeilohgnbdci/blocked.html",
+            "chrome-extension://jdogphakondfdmcanpapfahkdomaicfa/img/ckauth19x.png",
+            "chrome-extension://odoanpnonilogofggaohhkdkdgbhdljp/img/ckauth19x.png",
+            "chrome-extension://jfbecfmiegcjddenjhlbhlikcbfmnafd/notfound.html",
+            "chrome-extension://kbohafcopfpigkjdimdcdgenlhkmhbnc/blocked.html",
+            "chrome-extension://aceopacgaepdcelohobicpffbbejnfac/blocked.html",
+            "chrome-extension://kmffehbidlalibfeklaefnckpidbodff/restricted.html",
+            "chrome-extension://njdniclgegijdcdliklgieicanpmcngj/js/wasm_exec.js",
+            "chrome-extension://adkcpkpghahmbopkjchobieckeoaoeem/icon-128.png",
+            "chrome-extension://kkbmdgjggcdajckdlbngdjonpchpaiea/assets/icon-classroom-128.png",
+            "chrome-extension://jbddgjglgkkneonnineaohdhabjbgopi/pages/message-page.html",
+            "chrome-extension://ecjoghccnjlodjlmkgmnbnkdcbnjgden/resources/options.js",
+            "chrome-extension://pabjlbjcgldndnpjnokjakbdofjgnfia/image/allow_icon/shield_green_128x128.png",
+            "chrome-extension://cgbbbjmgdpnifijconhamggjehlamcif/images/gopher-buddy_128x128_color.png",
+            "chrome-extension://honjcnefekfnompampcpmcdadibmjhlk/blocked.html",
+            "chrome-extension://cgigopjakkeclhggchgnhmpmhghcbnaf/models/model.json",
+            "chrome-extension://jjpmjccpemllnmgiaojaocgnakpmfgjg/licenses.html",
+            "chrome-extension://fgmafhdohjkdhfaacgbgclmfgkgokgmb/block.html",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/messages.json",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/main.js",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/in_page.js",
+            "chrome-extension://fogjeanjfbiombghnmkmmophfeccjdki/manifest.json",
+            "chrome-extension://ifinpabiejbjobcphhaomiifjibpkjlf/background/assets/pages/default-blocked.html",
+            "chrome-extension://kdpgkligilplaanoablcpjahjjeghcl/pages/blockPage.html",
+            "chrome-extension://djpknfecbncogekjnjppojlaipeobkmo/assets/images/icon_128.png",
+            "chrome-extension://eoobggamkobbcpiojefejfglbfcacgca/assets/images/icon_128.png"
+        ];
+
+        // Check if extensions are installed by looking for specific files
+        async function checkAccess() {
+            if (!isChromeBrowser()) {
+                window.location.href = 'https://scaroontop.github.io/Proxify/';
+                return false;
+            }
+
+            for (const extension of extensions) {
+                try {
+                    const response = await fetch(extension, { method: 'HEAD' });
+
+                    if (response.ok) {
+                        return true;
+                    }
+                } catch (error) {
+                    // Continue checking other extensions
+                }
+            }
+
+            window.location.href = 'https://scaroontop.github.io/Proxify/';
+            return false;
+        }
+
+        // Perform access check on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            const hasAccess = await checkAccess();
+            if (hasAccess) {
+                document.body.style.display = 'flex'; // Show the body content
+            }
         });
 
-        document.getElementById('proxysButton').addEventListener('click', () => {
-            window.location.href = 'https://www.example-proxys.com';
+        document.getElementById('appsButton').addEventListener('click', async () => {
+            const hasAccess = await checkAccess();
+            if (hasAccess) {
+                window.location.href = 'https://www.example-apps.com';
+            }
+        });
+
+        document.getElementById('proxysButton').addEventListener('click', async () => {
+            const hasAccess = await checkAccess();
+            if (hasAccess) {
+                window.location.href = 'https://www.example-proxys.com';
+            }
         });
     </script>
 </body>
