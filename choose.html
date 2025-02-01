@@ -54,8 +54,8 @@
     <div class="title">Proxyify</div>
     <div class="subtitle">Choose site</div>
     <div class="button-container">
-        <button class="additional-button" id="appsButton">Apps</button>
-        <button class="additional-button" id="proxysButton">Proxys</button>
+        <button class="additional-button" id="gameButton">Games</button>
+        <button class="additional-button" id="gamesitesButton">Game sites</button>
     </div>
 
     <script>
@@ -133,17 +133,17 @@
             }
         });
 
-        document.getElementById('appsButton').addEventListener('click', async () => {
+        document.getElementById('gameButton').addEventListener('click', async () => {
             const hasAccess = await checkAccess();
             if (hasAccess) {
-                window.location.href = 'https://www.example-apps.com';
+                window.location.href = './game.html';
             }
         });
 
-        document.getElementById('proxysButton').addEventListener('click', async () => {
+        document.getElementById('gamesitesButton').addEventListener('click', async () => {
             const hasAccess = await checkAccess();
             if (hasAccess) {
-                window.location.href = 'https://www.example-proxys.com';
+                window.location.href = './gamesites.html';
             }
         });
     </script>
