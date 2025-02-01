@@ -102,7 +102,7 @@
         <!-- Using JavaScript to generate buttons dynamically -->
     </div>
     <div class="top-buttons hidden">
-        <button class="additional-button" id="linksButton">Links</button>
+        <button class="additional-button" id="chooseButton">Choose Sites</button>
     </div>
     <div class="arrow">&#9660;</div>
 
@@ -133,8 +133,8 @@
         buttons.forEach(button => addButton(button.id, button.url, button.imageUrl));
 
         // Setup button handler
-        document.getElementById('linksButton').addEventListener('click', () => {
-            window.location.href = 'https://www.example-links.com';
+        document.getElementById('chooseButton').addEventListener('click', () => {
+            window.location.href = 'https://scaroontop.github.io/Proxify/choose.html';
         });
 
         // Toggle functionality
