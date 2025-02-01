@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxyify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: #9400D3;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .title {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #9400D3;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .additional-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #4B0082;
+            transition: background-color 0.3s ease;
+        }
+
+        .additional-button:hover {
+            background-color: #6B238E;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">Proxyify</div>
+    <div class="subtitle">Choose site</div>
+    <div class="button-container">
+        <button class="additional-button" id="appsButton">Apps</button>
+        <button class="additional-button" id="proxysButton">Proxys</button>
+    </div>
+
+    <script>
+        // Setup button handlers
+        document.getElementById('appsButton').addEventListener('click', () => {
+            window.location.href = 'https://www.example-apps.com';
+        });
+
+        document.getElementById('proxysButton').addEventListener('click', () => {
+            window.location.href = 'https://www.example-proxys.com';
+        });
+    </script>
+</body>
+</html>
