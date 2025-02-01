@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxyify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: #9400D3;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 20px;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .button-container:hover {
+            transform: scale(1.1);
+        }
+
+        .button-image {
+            width: 100px;
+            height: 100px;
+            background-color: #4B0082;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .button-title {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #FFFFFF;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+
+        .arrow {
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #FFFFFF;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            right: 60px;
+            display: flex;
+            gap: 10px;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .additional-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #4B0082;
+            transition: background-color 0.3s ease;
+        }
+
+        .additional-button:hover {
+            background-color: #6B238E;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Proxyify</h1>
+    <div class="button-grid">
+        <!-- Using JavaScript to generate buttons dynamically -->
+    </div>
+    <div class="top-buttons hidden">
+        <button class="additional-button" id="linksButton">Links</button>
+    </div>
+    <div class="arrow">&#9660;</div>
+
+    <script>
+        // Function to create and add a button
+        function addButton(id, url, imageUrl) {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'button-container';
+            buttonContainer.innerHTML = `
+                <img src="${imageUrl}" alt="Button ${id}" class="button-image">
+                <span class="button-title">${id}</span>
+            `;
+            buttonContainer.addEventListener('click', () => window.location.href = url);
+            document.querySelector('.button-grid').appendChild(buttonContainer);
+        }
+
+        // Generate buttons dynamically
+        const buttons = [
+            { id: 'Chess', url: 'https://www.example1.com', imageUrl: 'image-url-1.png' },
+            { id: 'Minecraft', url: 'https://www.example2.com', imageUrl: 'image-url-2.png' },
+            { id: 'Roblox', url: 'https://www.example1.com', imageUrl: 'image-url-1.png' },
+            { id: 'Super Mario 64', url: 'https://www.example2.com', imageUrl: 'image-url-2.png' },
+            { id: 'Pacman', url: 'https://www.example1.com', imageUrl: 'image-url-1.png' },
+            { id: 'Weavesilk', url: 'https://www.example2.com', imageUrl: 'image-url-2.png' },
+            // Add more button data here
+        ];
+
+        buttons.forEach(button => addButton(button.id, button.url, button.imageUrl));
+
+        // Setup button handler
+        document.getElementById('linksButton').addEventListener('click', () => {
+            window.location.href = 'https://www.example-links.com';
+        });
+
+        // Toggle functionality
+        document.querySelector('.arrow').addEventListener('click', function() {
+            const topButtons = document.querySelector('.top-buttons');
+            const title = document.querySelector('.title');
+            const arrow = this;
+
+            topButtons.classList.toggle('hidden');
+            title.classList.toggle('hidden');
+            arrow.style.transform = arrow.style.transform === 'rotate(180deg)' ? '' : 'rotate(180deg)';
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const topButtons = document.querySelector('.top-buttons');
+            topButtons.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
