@@ -18,36 +18,14 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            margin: 20px;
-            max-width: 1200px;
-            padding: 20px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 10px;
-            background-color: #4B0082;
-            color: #FFFFFF;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .button-container:hover {
-            transform: scale(1.1);
-            background-color: #6B238E;
+        h1 {
+            margin-top: 10px;
+            font-size: 3em;
         }
 
         .bottom-buttons {
             position: fixed;
             bottom: 20px;
-            right: 20px;
             display: flex;
             gap: 10px;
             transition: all 0.3s ease;
@@ -116,15 +94,6 @@
             color: #000000;
         }
 
-        .light-mode .button-container {
-            background-color: #dddddd;
-            color: #000000;
-        }
-
-        .light-mode .button-container:hover {
-            background-color: #bbbbbb;
-        }
-
         .light-mode .additional-button {
             background-color: #dddddd;
             color: #000000;
@@ -158,24 +127,123 @@
             color: #ffffff;
             margin-top: 20px;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        .modal input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .modal button {
+            display: block;
+            width: 100%;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .modal button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h1 class="title">Proxyify</h1>
-    <iframe id="embedFrame" src="" sandbox="allow-scripts allow-same-origin"></iframe>
+    <iframe id="embedFrame" src="" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock" allowfullscreen></iframe>
     <div class="error-message" id="errorMessage">
         <p>Failed to load embed. Please try another link.</p>
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJyZWQiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyek0xMyAxN2gtMnYtMmgydjJ6bTAtNGgtMlY3aDJ2NnoiLz48L3N2Zz4=" alt="Error Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;">
     </div>
     <div class="bottom-buttons">
-        <button class="additional-button" onclick="embedLink('https://sm64-embed.glitch.me/start.html', this)">Link 1</button>
-        <button class="additional-button" onclick="embedLink('https://2pu896.csb.app/', this)">Link 2</button>
+        <button class="additional-button" onclick="embedLink('https://j.xj2.workers.dev/-----https://sm64-embed.glitch.me/start.html', this)">Link 1</button>
+        <button class="additional-button" onclick="embedLink('https://read.librariesof.ink/~/uv/hvtrs8%2F-2ru%3A94.as%60.cpr%2F', this)">Link 2 (Click on the embed or audio will break)</button>
         <button class="additional-button" id="modeToggle">Toggle Dark or Light Mode</button>
         <button class="additional-button" id="methodToggle">Toggle Embed Method</button>
-        <button class="additional-button" id="errorToggle">Toggle Error Detection (Really buggy Does not work!)</button>
+        <button class="additional-button" id="errorToggle">Toggle Error Detection</button>
     </div>
     <div class="arrow" id="siteLoadedMessage">Site has loaded. Please check the about:blank window. If there is nothing there, report the issue to us through Discord (Widgetbot).</div>
     <button class="fullscreen-button" id="fullscreenButton">Fullscreen</button>
+
+    <!-- Modal for Method 3 -->
+    <div id="method3Modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cloaked Site File Generator</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            
+            <label for="title-input">Enter Page Title:</label>
+            <input type="text" id="title-input" placeholder="Enter the title for the file tab" />
+            
+            <label for="favicon-input">Enter URL to Cloak as:</label>
+            <input type="text" id="favicon-input" placeholder="Type URL of any website you want the file to cloak as." />
+            
+            <button onclick="downloadHtml()">Download File</button>
+        </div>
+    </div>
 
     <script>
         let embedMethod = 1; // Start with method 1
@@ -189,11 +257,13 @@
             const siteLoadedMessage = document.getElementById('siteLoadedMessage');
             expectedUrl = url; // Set the expected URL
 
+            errorMessage.style.display = 'none';
+            siteLoadedMessage.style.display = 'none';
+
             if (embedMethod === 1) {
                 embedFrame.src = url;
 
                 embedFrame.onload = function() {
-                    errorMessage.style.display = 'none';
                     embedFrame.style.display = 'block';
 
                     if (errorDetectionEnabled) {
@@ -213,10 +283,6 @@
                     displayError('Connection Refused');
                 };
 
-                embedFrame.style.display = 'block';
-                errorMessage.style.display = 'none';
-                siteLoadedMessage.style.display = 'none';
-
                 if (errorDetectionEnabled) {
                     setTimeout(() => {
                         try {
@@ -232,8 +298,9 @@
             } else if (embedMethod === 2) {
                 openGame(url);
                 embedFrame.style.display = 'none';
-                errorMessage.style.display = 'none';
                 siteLoadedMessage.style.display = 'block';
+            } else if (embedMethod === 3) {
+                openModal();
             }
 
             let buttons = document.querySelectorAll('.additional-button');
@@ -276,12 +343,8 @@
         function toggleFullscreen() {
             const iframe = document.getElementById('embedFrame');
             if (document.fullscreenElement) {
-                document.exitFullscreen().then(() => {
-                    document.body.classList.toggle('light-mode', previousMode === 'light');
-                });
+                document.exitFullscreen();
             } else {
-                previousMode = document.body.classList.contains('light-mode') ? 'light' : 'dark';
-                document.body.classList.add('light-mode'); // Ensure light mode is on
                 if (iframe.requestFullscreen) {
                     iframe.requestFullscreen();
                 } else if (iframe.mozRequestFullScreen) { // Firefox
@@ -294,6 +357,16 @@
             }
         }
 
+        function openModal() {
+            const modal = document.getElementById('method3Modal');
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('method3Modal');
+            modal.style.display = 'none';
+        }
+
         // Toggle between light and dark mode
         document.getElementById('modeToggle').addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
@@ -301,7 +374,7 @@
 
         // Toggle between embed methods
         document.getElementById('methodToggle').addEventListener('click', () => {
-            embedMethod = (embedMethod === 1) ? 2 : 1;
+            embedMethod = (embedMethod === 1) ? 2 : (embedMethod === 2) ? 3 : 1;
             alert(`Embed method switched to Method ${embedMethod}`);
         });
 
@@ -325,6 +398,63 @@
                 document.body.classList.toggle('light-mode', previousMode === 'light');
             }
         });
+
+        // Function to normalize URLs
+        function normalizeUrl(url) {
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                return 'https://' + url;
+            }
+            return url;
+        }
+
+        // Function to download HTML file
+        function downloadHtml() {
+            const rawUrl = expectedUrl;
+            const rawBaseUrl = document.getElementById('favicon-input').value;
+            const title = document.getElementById('title-input').value || "Embed Page";
+
+            const url = normalizeUrl(rawUrl);
+            const baseUrl = rawBaseUrl ? normalizeUrl(rawBaseUrl) : "";
+
+            const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${baseUrl}`;
+
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                    <link rel="icon" href="${faviconUrl}" type="image/x-icon">
+                    <style>
+                        body, html {
+                            margin: 0;
+                            padding: 0;
+                            height: 100%;
+                            overflow: hidden;
+                        }
+                        embed {
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <embed src="${url}"></embed>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+
+            const link = document.createElement('a');
+            const fileName = title.replace(/\s+/g, '_') + '.html';
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+
+            link.click();
+        }
     </script>
 </body>
 </html>
