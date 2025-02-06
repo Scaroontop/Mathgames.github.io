@@ -130,35 +130,80 @@ Method 2 to use Ultrastatic
 -> Deploy to Github Pages or CloudFlare.
 Page sandbox
 https://j.xj2.workers.dev/</div>
-
-    <script>
-        // Array of extension IDs to check
-        const extensionIds = [
-            "haldlgldplgnggkjaafhelgiaglafanh",
-            "jfbecfmiegcjddenjhlbhlikcbfmnafd",
-            "dikiaagfielfbnbbopidjjagldjopbpa"
-        ];
-
-        // Function to check if any of the extensions are installed
-        function checkExtensions() {
-            extensionIds.forEach(id => {
-                const img = document.createElement('img');
-                img.src = `chrome-extension://${id}/icon.png`;
-                img.onload = () => {
-                    document.querySelector('.message').style.display = 'block';
-                    document.querySelector('.understand-button').style.display = 'block';
-                };
-                document.body.appendChild(img);
-            });
+  <script>
+        // Check if the browser is Chrome
+        function isChromeBrowser() {
+            return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
         }
 
-        // Event listener for the "I understand" button
-        document.querySelector('.understand-button').addEventListener('click', () => {
-            document.querySelector('.test-message').style.display = 'block';
-        });
+        // List of extension IDs and file paths
+        const extensions = [
+            "chrome-extension://joflmkccibkooplaeoinecjbmdebglab/fonts/Metropolis.css",
+            "chrome-extension://ckecmkbnoanpgplccmnoikfmpcdladkc/fonts/Metropolis.css",
+            "chrome-extension://iheobagjkfklnlikgihanlhcddjoihkg/fonts/Metropolis.css",
+            "chrome-extension://haldlgldplgnggkjaafhelgiaglafanh/youtube_injection.js",
+            "chrome-extension://baleiojnjpgeojohhhfbichcodgljmnj/blocked.html",
+            "chrome-extension://ddfbkhpmcdbciejenfcolaaiebnjcbfc/background/assets/pages/default-blocked.html",
+            "chrome-extension://ghlpmldmjjhmdgmneoaibbegkjjbonbk/pages/blockPage.html",
+            "chrome-extension://igbgpehnbmhgdgjbhkkpedommgmfbeao/youtube_injection.js",
+            "chrome-extension://jcdhmojfecjfmbdpchihbeilohgnbdci/blocked.html",
+            "chrome-extension://jdogphakondfdmcanpapfahkdomaicfa/img/ckauth19x.png",
+            "chrome-extension://odoanpnonilogofggaohhkdkdgbhdljp/img/ckauth19x.png",
+            "chrome-extension://jfbecfmiegcjddenjhlbhlikcbfmnafd/notfound.html",
+            "chrome-extension://kbohafcopfpigkjdimdcdgenlhkmhbnc/blocked.html",
+            "chrome-extension://aceopacgaepdcelohobicpffbbejnfac/blocked.html",
+            "chrome-extension://kmffehbidlalibfeklaefnckpidbodff/restricted.html",
+            "chrome-extension://njdniclgegijdcdliklgieicanpmcngj/js/wasm_exec.js",
+            "chrome-extension://adkcpkpghahmbopkjchobieckeoaoeem/icon-128.png",
+            "chrome-extension://kkbmdgjggcdajckdlbngdjonpchpaiea/assets/icon-classroom-128.png",
+            "chrome-extension://jbddgjglgkkneonnineaohdhabjbgopi/pages/message-page.html",
+            "chrome-extension://ecjoghccnjlodjlmkgmnbnkdcbnjgden/resources/options.js",
+            "chrome-extension://pabjlbjcgldndnpjnokjakbdofjgnfia/image/allow_icon/shield_green_128x128.png",
+            "chrome-extension://cgbbbjmgdpnifijconhamggjehlamcif/images/gopher-buddy_128x128_color.png",
+            "chrome-extension://honjcnefekfnompampcpmcdadibmjhlk/blocked.html",
+            "chrome-extension://cgigopjakkeclhggchgnhmpmhghcbnaf/models/model.json",
+            "chrome-extension://jjpmjccpemllnmgiaojaocgnakpmfgjg/licenses.html",
+            "chrome-extension://fgmafhdohjkdhfaacgbgclmfgkgokgmb/block.html",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/messages.json",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/main.js",
+            "chrome-extension://gcjpefhffmcgplgklffgbebganmhffje/_locales/lt/in_page.js",
+            "chrome-extension://fogjeanjfbiombghnmkmmophfeccjdki/manifest.json",
+            "chrome-extension://ifinpabiejbjobcphhaomiifjibpkjlf/background/assets/pages/default-blocked.html",
+            "chrome-extension://kdpgkligilplaanoablcpjahjjeghcl/pages/blockPage.html",
+            "chrome-extension://djpknfecbncogekjnjppojlaipeobkmo/assets/images/icon_128.png",
+            "chrome-extension://eoobggamkobbcpiojefejfglbfcacgca/assets/images/icon_128.png"
+        ];
 
-        // Check for extensions on page load
-        window.onload = checkExtensions;
+        // Check if extensions are installed by looking for specific files
+        async function checkExtensions() {
+            if (!isChromeBrowser()) {
+                document.getElementById('results').innerHTML = "<p>Not using Chrome</p>";
+                return;
+            }
+
+            const resultsDiv = document.getElementById('results');
+            let foundExtension = false;
+
+            for (const extension of extensions) {
+                try {
+                    const response = await fetch(extension, { method: 'HEAD' });
+
+                    if (response.ok) {
+                        foundExtension = true;
+                        window.location.href = './choose.html';
+                        break;
+                    }
+                } catch (error) {
+                    // Continue checking other extensions
+                }
+            }
+
+            if (!foundExtension) {
+                resultsDiv.innerHTML = "<p>You do not have access</p>";
+            }
+        }
+
+        checkExtensions();
     </script>
 </body>
 </html>
