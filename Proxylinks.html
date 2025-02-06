@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+            color: #9400D3;
+            margin: 0;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1 {
+            margin-top: 10px;
+            font-size: 3em;
+        }
+
+        .message, .understand-button, .test-message {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .understand-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #4B0082;
+            transition: background-color 0.3s ease;
+        }
+
+        .understand-button:hover {
+            background-color: #6B238E;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extension Checker</h1>
+    <div class="message">Please do not leak these because finding more links sucks.</div>
+    <button class="understand-button">I understand</button>
+    <div class="test-message">Space
+https://perfect.saturdaynitespecial.ca/
+https://discoveryexplore.puffballofevil.com/
+https://skyzone.radarvision.co.za/
+https://no.uglisounds.se/
+https://ae.leodealmagro.com.ar/
+https://po.itparadiis.eu/
+https://cat.giripawan.com.np/
+https://real.media-sud.ro/
+https://wa.mecanicatecnicar.com.ar/
+https://rex.cassain.com.ar/
+https://jshlatt-is-sigma.cissp.or.id/
+https://jesuschristislife.samyog.com.np/
+https://dark.energy.digitalforest.my/
+https://didhe.party.jlengineering.se/
+https://hithere.gestionacademica.cl/
+https://spider.rocketpride.com/
+https://www.yum.coranonprofit.org/
+https://edu.saugatnepal.com.np/
+https://kandicat.tenderproai.com/
+https://shush.com.unitgrapigs.com/
+https://p99bs.kalbas.com.vn/
+https://avocadosfrommexico.bakkoda.com/
+https://ilovespace.tutak.at/
+https://star.cbass92.org/
+https://r.webconstructions.co.uk/
+https://programming.tclbbs.net/
+https://allah.prert.cl/
+https://powerpoint.tutorial.digitalforest.my/
+https://sigma.thecarrollsite.com/
+https://wefkjlfljkewjfwef.limana.rs/
+https://space.zzylos.lol/
+https://po.itparadiis.eu/
+https://dentist.johanson.ee/
+https://chromebooks.laptopy.nl/
+https://crocodile.acumor.co/
+https://justenoughdew.notenoughdew.com/
+https://santiagosucksatbrawlhallaandfortniteiclippedaaronbecausehesucks.stofcheck-ballinger.com/
+https://berriestillfall.puffballofevil.com/
+https://luneyflare.puffballofevil.com/
+Interstellar
+https://bookingportal.mounthoodlodge.info
+https://kjms.eduinnova.cl
+https://clever.com.cerrajeriasanmiguel.com/
+https://travel.bsfa.info/
+https://order.toastapp.bocellipizza.com/
+https://algebra.education.sanluix.org/
+https://humanrights.education.support.noviolencia.ar/
+https://menu.earlyriserscoffeeshop.com
+Utopia
+https://graph.sci.themathdoctors.org
+https://clever.lab.jcstrout.com
+https://atom.smart.stratulat1.com
+https://chart.books.khabdha.org
+https://angle.course.van-hoogstraten.org
+https://piano.major.jomillikan.com
+https://prep.info.callmuffin.org
+Freedom Project (Best proxy)
+https://buy.stationerycrafts.shop/
+Rammerhead
+https://sharksarecooljustlikebypazzer.bonaire.tk/
+https://d1crashout.pii.at/
+https://education-pr0xy.vslui.net/
+https://youngminds.eduarmor.com/
+https://t777sites.redkom.cl/
+https://diegosbrowser.6ip.it/
+https://obama.dd.msk.su/
+https://rh.dyhack.net/
+https://formali.duckdns.org/
+https://hawke.host2go.net/
+https://brofabianbroitsnotyourturn.unitgrapigs.com/
+https://toptencoldfabianphonkedits.esgemsedu.mx/
+https://dawnthyrekoning.bonaire.tk/
+Ultrastatic
+https://tisc.pages.dev/
+https://ultrastatic.pages.dev/
+Method 2 to use Ultrastatic
+-> Go to https://github.com/Playdotlol/UltraStatic
+-> Fork the repo
+-> Deploy to Github Pages or CloudFlare.
+Page sandbox
+https://j.xj2.workers.dev/</div>
+
+    <script>
+        // Array of extension IDs to check
+        const extensionIds = [
+            "haldlgldplgnggkjaafhelgiaglafanh",
+            "jfbecfmiegcjddenjhlbhlikcbfmnafd",
+            "dikiaagfielfbnbbopidjjagldjopbpa"
+        ];
+
+        // Function to check if any of the extensions are installed
+        function checkExtensions() {
+            extensionIds.forEach(id => {
+                const img = document.createElement('img');
+                img.src = `chrome-extension://${id}/icon.png`;
+                img.onload = () => {
+                    document.querySelector('.message').style.display = 'block';
+                    document.querySelector('.understand-button').style.display = 'block';
+                };
+                document.body.appendChild(img);
+            });
+        }
+
+        // Event listener for the "I understand" button
+        document.querySelector('.understand-button').addEventListener('click', () => {
+            document.querySelector('.test-message').style.display = 'block';
+        });
+
+        // Check for extensions on page load
+        window.onload = checkExtensions;
+    </script>
+</body>
+</html>
